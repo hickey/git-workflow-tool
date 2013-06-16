@@ -4,8 +4,22 @@ module GWT
   module Command
     module Feature
       
-      module_function 
-      
+      GWT::Command::Help.set_help <<-HELP
+|feature create <name>
+  Add a new feature
+  Create a new feature branch and change to it.
+|feature list
+  Show a list of existing features
+  Show a list of existing features.
+|feature delete <name>
+  Delete a feature
+  Remove an existing feature specified by <name>. This will delete all 
+  changes associated with the feature that have not yet been merged into
+  the integration branch. After execution, repo will be on the 
+  integration branch.
+HELP
+
+      module_function
       def perform(repo, args)
         feature_cmd = args.shift
         feature_name = args.shift
