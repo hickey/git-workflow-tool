@@ -6,3 +6,11 @@ require 'gwt'
 
 #opts = Woodchuck::Runner.read
 #Woodchuck::Runner.run(opts)
+
+#puts GWT::Cli.methods
+
+cli = GWT::Cli.new
+cli.parse
+
+puts "command = #{cli.command}"
+puts "args = #{cli.args.inspect}"
