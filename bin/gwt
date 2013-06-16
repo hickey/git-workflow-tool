@@ -4,13 +4,16 @@ $: << File.dirname(__FILE__) + '/../lib' unless $:.include?(File.dirname(__FILE_
 
 require 'gwt'
 
-#opts = Woodchuck::Runner.read
-#Woodchuck::Runner.run(opts)
+module GWT
+  cli = Cli.new
+  cli.parse
+  
+  mod_command = cli.command.capitalize
+  if Command.const_defined? mod_command
+    Command.class_eval("#{mod_command}.perform(GWT.repo, cli.args)")
+  else
+    puts "No such subcommand. Try using help."
+    exit 1
+  end
 
-#puts GWT::Cli.methods
-
-cli = GWT::Cli.new
-cli.parse
-
-puts "command = #{cli.command}"
-puts "args = #{cli.args.inspect}"
+end
