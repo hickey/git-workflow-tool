@@ -20,6 +20,8 @@ module GWT
     keys.each {|k| @config[k] = @repo.config(k)}
   end
   
+
+  
   
   module_function
   
@@ -50,4 +52,7 @@ module GWT
   end
 
 
+  unless keys.member? 'gwt.integration'
+    config_set('gwt.integration', 'master')
+  end
 end
