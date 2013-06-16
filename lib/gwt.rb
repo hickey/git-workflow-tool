@@ -11,18 +11,19 @@ module GWT
 
   @repo = GWT::Repo.open
   @config = {}
-  
-  def load_config
-    repo.config.keys.grep(%r{^gwt\.}).each {|k| @config[k] = repo.config(k)}
-  end
-  
+  @repo.config.keys.grep(%r{^gwt\.}).each {|k| @config[k] = @repo.config(k)}
+
   module_function
   
   def repo;  @repo  end
   def config;  @config  end
-  def config=(key, val)
-    repo.config(key, val)
-    load_config
+  def config_set(key, val)
+    @repo.config(key, val)
+    @config[key] = val
+  end
+  def config_del(key)
+    %x{git config --unset #{key}}
+    @config.delete(key)
   end
 
 

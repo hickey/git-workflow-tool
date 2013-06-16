@@ -5,7 +5,7 @@ module GWT
   class Cli
 
     attr_reader :options
-    attr_reader :command
+    attr_reader :subcmd
     attr_reader :args
     
     
@@ -13,7 +13,7 @@ module GWT
       @options = { :verbose       => false
       
         }
-      @command = nil
+      @subcmd = nil
       @args = []
     end
     
@@ -36,7 +36,7 @@ module GWT
 
       # look for the subcommand
       if ARGV.count > 0
-        @command = ARGV.shift
+        @subcmd = ARGV.shift
         @args = ARGV
       end
 

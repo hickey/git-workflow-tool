@@ -7,8 +7,8 @@ require 'gwt'
 module GWT
   cli = Cli.new
   cli.parse
-  
-  mod_command = cli.command.capitalize
+
+  mod_command = cli.subcmd.capitalize
   if Command.const_defined? mod_command
     Command.class_eval("#{mod_command}.perform(GWT.repo, cli.args)")
   else
