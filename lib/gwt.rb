@@ -20,8 +20,6 @@ module GWT
     keys.each {|k| @config[k] = @repo.config(k)}
   end
   
-
-  
   
   module_function
   
@@ -38,8 +36,6 @@ module GWT
   end
   def config_set(key, val)
     if val.is_a? Array
-      puts "trying to save an array: #{val.inspect}"
-      puts "JSON = #{val.to_json}"
       %x{git config #{key} '#{val.to_json}'}
     else 
       %x{git config #{key} #{val}}
@@ -51,8 +47,18 @@ module GWT
     @config.delete(key)
   end
 
-
+  def integration;  @config['gwt.integration']  end
+  def integration= v;  config_set('gwt.integration', v)  end
   unless keys.member? 'gwt.integration'
     config_set('gwt.integration', 'master')
+  end
+  
+  def workflow; @config['gwt.workflow']  end
+  def workflow= v
+    if v.is_a? Array
+      config_set('gwt.workflow', v)
+    else
+      config_set('gwt.workflow', v.split(':'))
+    end
   end
 end

@@ -31,7 +31,7 @@ HELP
             puts "Feature name not specified"
             exit 2
           end
-          repo.branch('master').checkout
+          repo.branch(GWT::integration).checkout
           repo.branch(feature_name).create
           repo.branch(feature_name).checkout
           features << feature_name
@@ -49,7 +49,7 @@ HELP
             puts "Feature name not specified"
             exit 2
           end
-          repo.branch('master').checkout
+          repo.branch(GWT::integration).checkout
           repo.branch(feature_name).delete
           features.delete(feature_name)
           GWT::config_set('gwt.features', features)
