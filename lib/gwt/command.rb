@@ -14,8 +14,12 @@ module GWT
         cmd_line = nil
         text.split("\n").each do |line|
           case line[0]
-          when 124  # first char is |
-            # Command definition
+          when 124       # first char is |
+            # Command definition    (ruby 1.8.7)
+            cmd_line = line.tr('|', ' ').strip
+            @@help[cmd_line] = { :summary => nil, :details => nil }
+          when '|'       # first char is |
+            # Command definition   (ruby 1.9.3)
             cmd_line = line.tr('|', ' ').strip
             @@help[cmd_line] = { :summary => nil, :details => nil }
           else
