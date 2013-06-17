@@ -61,4 +61,8 @@ module GWT
       config_set('gwt.workflow', v.split(':'))
     end
   end
+  
+  def features;  @config['gwt.features']  end
+  
+  
 end

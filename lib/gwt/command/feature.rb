@@ -23,7 +23,7 @@ HELP
       def perform(repo, args)
         feature_cmd = args.shift
         feature_name = args.shift
-        features = GWT::config_get('gwt.features').to_a
+        features = GWT::features.to_a
         
         case feature_cmd
         when %r{create|add}
@@ -35,8 +35,6 @@ HELP
           repo.branch(feature_name).create
           repo.branch(feature_name).checkout
           features << feature_name
-          puts "features = #{features.inspect}"
-          
           GWT::config_set('gwt.features', features)
           
         when %r{list}
