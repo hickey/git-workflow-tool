@@ -17,7 +17,7 @@ module GWT
   # load the configuration into @config
   keys = @repo.config.keys.grep(%r{^gwt\.})
   unless keys.nil?
-    keys.each {|k| puts "#{k}"; @config[k] = @repo.config[k]}
+    keys.each {|k| @config[k] = @repo.config[k]}
   end
   
   
@@ -47,13 +47,13 @@ module GWT
     @config.delete(key)
   end
 
-  def integration;  @config['gwt.integration']  end
+  def integration;  config_get('gwt.integration')  end
   def integration= v;  config_set('gwt.integration', v)  end
   unless keys.member? 'gwt.integration'
     config_set('gwt.integration', 'master')
   end
   
-  def workflow; @config['gwt.workflow']  end
+  def workflow; config_get('gwt.workflow')  end
   def workflow= v
     if v.is_a? Array
       config_set('gwt.workflow', v)
@@ -62,7 +62,7 @@ module GWT
     end
   end
   
-  def features;  @config['gwt.features']  end
+  def features;  config_get('gwt.features')  end
   
   
 end

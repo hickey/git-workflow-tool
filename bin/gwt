@@ -10,7 +10,15 @@ module GWT
 
   mod_command = cli.subcmd.capitalize
   if Command.const_defined? mod_command
-    Command.class_eval("#{mod_command}.perform(GWT.repo, cli.args)")
+    begin
+      Command.class_eval("#{mod_command}.perform(GWT.repo, cli.args)")
+    rescue Exception => e
+      unless e.is_a? SystemExit
+        puts "Unhandled error occurred: #{e.message}"
+        puts "#{e.backtrace}"
+        exit 1
+      end
+    end
   else
     puts "No such subcommand. Try using help."
     exit 1
