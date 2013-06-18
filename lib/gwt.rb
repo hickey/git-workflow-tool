@@ -17,7 +17,7 @@ module GWT
   # load the configuration into @config
   keys = @repo.config.keys.grep(%r{^gwt\.})
   unless keys.nil?
-    keys.each {|k| @config[k] = @repo.config(k)}
+    keys.each {|k| puts "#{k}"; @config[k] = @repo.config[k]}
   end
   
   
