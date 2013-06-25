@@ -49,9 +49,11 @@ module GWT
 
   def integration;  config_get('gwt.integration')  end
   def integration= v;  config_set('gwt.integration', v)  end
+  def is_integration_branch? val;  integration == val  end
   unless keys.member? 'gwt.integration'
     config_set('gwt.integration', 'master')
   end
+  
   
   def workflow; config_get('gwt.workflow')  end
   def workflow= v
@@ -61,8 +63,10 @@ module GWT
       config_set('gwt.workflow', v.split(':'))
     end
   end
+  def is_workflow_branch? val;  workflow.member? val  end
+  
   
   def features;  config_get('gwt.features')  end
-  
+  def is_feature_branch? val;  features.member? val  end
   
 end

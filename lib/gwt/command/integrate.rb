@@ -30,6 +30,7 @@ HELP
         # switch to integration branch and merge the feature branch
         begin
           repo.branch(GWT::integration).checkout
+          repo.pull
           repo.branch(feature_branch).merge
         rescue Git::GitExecuteError => e
           if e.message.match "would be overwritten"
