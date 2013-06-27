@@ -23,7 +23,7 @@ HELP
       def perform(repo, args)
         feature_cmd = args.shift
         feature_name = args.shift
-        features = GWT::features.to_a
+        features = GWT::feature_branches.to_a
         
         case feature_cmd
         when %r{create|add}
@@ -31,7 +31,7 @@ HELP
             puts "Feature name not specified"
             exit 2
           end
-          repo.branch(GWT::integration).checkout
+          repo.branch(GWT::integration_branch).checkout
           repo.branch(feature_name).create
           repo.branch(feature_name).checkout
           features << feature_name
@@ -47,7 +47,7 @@ HELP
             puts "Feature name not specified"
             exit 2
           end
-          repo.branch(GWT::integration).checkout
+          repo.branch(GWT::integration_branch).checkout
           repo.branch(feature_name).delete
           features.delete(feature_name)
           GWT::config_set('gwt.features', features)

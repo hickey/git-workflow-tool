@@ -35,7 +35,7 @@ HELP
         if not GWT::is_workflow_branch? from_branch and
            not GWT::is_integration_branch? from_branch
           # Then we need to integrate it now
-          GWT::Command::Integrate.perform(repo, from_branch)
+          GWT::Command::Integrate.perform(repo, [from_branch])
           from_branch = GWT::integration_branch
         end
         
@@ -55,7 +55,21 @@ HELP
         end
         
         puts "promote_branches = #{promote_branches.inspect}"
-          
+        prev_branch = nil
+        promote_branches.each do |branch|
+          if prev_branch.nil?
+            prev_branch = branch
+          else
+            # Merge the previous branch in the workflow
+            repo.branch(branch).checkout
+            repo.pull
+            repo.branch(prev_branch).merge
+            
+            #TODO: check for conflicts and abort
+          end
+        end
+           
+        repo.push 
 
         
         
