@@ -31,6 +31,9 @@ HELP
           exit 2
         end
         
+        # Everything looks good. save the location
+        GWT::Repo.save_branch
+        
         # check to see if the from_branch has been integrated / workflow
         if not GWT::is_workflow_branch? from_branch and
            not GWT::is_integration_branch? from_branch
@@ -71,7 +74,8 @@ HELP
            
         repo.push 
 
-        
+        # return to where we started
+        GWT::Repo.restore_branch
         
       end
     end
