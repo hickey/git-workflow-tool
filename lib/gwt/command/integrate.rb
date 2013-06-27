@@ -32,7 +32,7 @@ HELP
         end
         
         # save the branch so as to return to it after integration
-        save_branch = repo.current_branch
+        GWT::Repo.save_branch
         
         #TODO Check to see if all files have been committed
 
@@ -55,8 +55,7 @@ HELP
 
         #TODO: Need to check for conflicts. 
         
-        repo.branch(save_branch).checkout
-        
+        GWT::Repo.restore_branch        
       end
     end
   end

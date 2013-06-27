@@ -5,6 +5,9 @@ require 'git'
 module GWT
   module Repo
     
+    @@obj = nil
+    @@save_branch = []
+    
     module_function
     
     def open
@@ -14,8 +17,8 @@ module GWT
         exit 1
       end
       
-      gitrepo = Git.open(workdir)
-      return gitrepo
+      @@obj = Git.open(workdir)
+      return @@obj
     end
     
     
@@ -33,6 +36,18 @@ module GWT
       return nil
     end
         
+        
+    # Convenence function for saving the branch and returning to it
+    # at a later time
+    def save_branch
+      @@save_branch << @@obj.current_branch
+    end
+    
+    # Restore branch to a previously saved location
+    def restore_branch
+      @@obj.branch(@@save_branch.pop).checkout
+    end
+    
     
   end
 end
