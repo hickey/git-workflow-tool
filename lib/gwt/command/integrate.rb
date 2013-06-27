@@ -26,7 +26,7 @@ HELP
         end
 
         # insure that we are clean
-        unless repo.status.changed.empty? and repo.status.added.empty? and repo.status.deleted.empty?
+        unless repo.status.clean? 
           puts "Not all changes have been committed. Please commit all changes first."
           exit 2
         end
