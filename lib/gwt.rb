@@ -9,7 +9,7 @@ require 'gwt/command'
 
 module GWT
   
-  VERSION = '0.0.1'
+  VERSION = '1.0.0'
 
   @repo = GWT::Repo.open
   @config = {}

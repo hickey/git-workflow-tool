@@ -60,7 +60,6 @@ HELP
           end
         end
         
-        puts "promote_branches = #{promote_branches.inspect}"
         prev_branch = nil
         promote_branches.each do |branch|
           if prev_branch.nil?
