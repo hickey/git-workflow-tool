@@ -47,9 +47,9 @@ module GWT
     @config.delete(key)
   end
 
-  def integration;  config_get('gwt.integration')  end
-  def integration= v;  config_set('gwt.integration', v)  end
-  def is_integration_branch? val;  integration == val  end
+  def integration_branch;  config_get('gwt.integration')  end
+  def integration_branch= v;  config_set('gwt.integration', v)  end
+  def is_integration_branch? val;  integration_branch == val  end
   unless keys.member? 'gwt.integration'
     config_set('gwt.integration', 'master')
   end
@@ -66,7 +66,7 @@ module GWT
   def is_workflow_branch? val;  workflow.member? val  end
   
   
-  def features;  config_get('gwt.features')  end
-  def is_feature_branch? val;  features.member? val  end
+  def feature_branches;  config_get('gwt.features')  end
+  def is_feature_branch? val;  feature_branches.member? val  end
   
 end

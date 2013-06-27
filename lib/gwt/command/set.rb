@@ -34,6 +34,8 @@ HELP
         when 'workflow'
           GWT.workflow= args[1..-1]
           
+          #TODO: push branch to origin if not already there
+          #TODO: track remote branch if it exists
           current_branch = repo.current_branch
           args[1..-1].each do |branch|
             unless repo.is_branch? branch
