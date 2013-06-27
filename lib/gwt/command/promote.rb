@@ -39,6 +39,9 @@ HELP
           from_branch = GWT::integration_branch
         end
         
+        # prepare to promote
+        GWT::Repo.save_branch
+        
         # build a list of workflow branches to promote through  
         workflow = [GWT::integration_branch, GWT::workflow]
         workflow.flatten!
@@ -71,8 +74,8 @@ HELP
            
         repo.push 
 
-        
-        
+        # return everything to normal
+        GWT::Repo.restore_branch
       end
     end
   end
