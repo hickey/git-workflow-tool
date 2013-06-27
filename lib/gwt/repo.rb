@@ -36,3 +36,12 @@ module GWT
     
   end
 end
+
+# Monkey patch Git gem
+module Git
+  class Status
+    def clean?
+      changed.empty? and added.empty? and deleted.empty?
+    end
+  end
+end
