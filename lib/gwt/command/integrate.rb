@@ -26,10 +26,7 @@ HELP
         end
 
         # insure that we are clean
-        puts "changed = #{repo.status.changed.empty?}"
-        puts "added = #{repo.status.added.empty?}"
-        puts "deleted = #{repo.status.deleted.empty?}"
-        unless repo.status.changed.nil? and repo.status.added.nil? and repo.status.deleted.nil?
+        unless repo.status.changed.empty? and repo.status.added.empty? and repo.status.deleted.empty?
           puts "Not all changes have been committed. Please commit all changes first."
           exit 2
         end
