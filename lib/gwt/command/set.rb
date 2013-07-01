@@ -22,24 +22,24 @@ HELP
         
         case args[0]
         when 'integration'
-          repo.branch(GWT.integration).checkout
+          repo.branch(GWT.integration_branch).checkout
           GWT.integration = args[1]
           
           if repo.is_branch? GWT.integration
-            repo.branch(GWT.integration).checkout
+            repo.branch(GWT.integration_branch).checkout
           else
-            repo.branch(GWT.integration).create
+            repo.branch(GWT.integration_branch).create
           end
         
         when 'workflow'
-          GWT.workflow= args[1..-1]
+          GWT.workflow = args[1..-1]
           
           #TODO: push branch to origin if not already there
           #TODO: track remote branch if it exists
           current_branch = repo.current_branch
           args[1..-1].each do |branch|
             unless repo.is_branch? branch
-              repo.branch(GWT.integration).checkout
+              repo.branch(GWT.integration_branch).checkout
               repo.branch(branch).create
             end
           end
