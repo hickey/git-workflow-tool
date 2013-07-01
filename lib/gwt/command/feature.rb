@@ -26,7 +26,7 @@ HELP
         features = GWT::feature_branches.to_a
         
         case feature_cmd
-        when %r{create|add}
+        when %r{create|add|new}
           if feature_name.nil?
             puts "Feature name not specified"
             exit 2
