@@ -37,7 +37,7 @@ HELP
           features << feature_name
           GWT::config_set('gwt.features', features)
           
-        when %r{list}
+        when %r{list|ls}
           unless features.nil?
             features.each {|f| puts f}
           end
