@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in woodchuck.gemspec
 gemspec
 
+gem 'rainbow' 
+
 group :test do
   gem 'rake'
 end
