@@ -1,6 +1,7 @@
 
 require 'rubygems'
 require 'json'
+require 'rainbow'
 
 require 'gwt/cli'
 require 'gwt/repo'
